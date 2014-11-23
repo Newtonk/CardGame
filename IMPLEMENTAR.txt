@@ -1,0 +1,106 @@
+===		IMPLEMENTACAO		===
+
+[ ]	Simulaçao de partidas.
+[ ]	Criaçao e ediçao de baralhos.
+[ ]	Exibiçao de todas as cartas existentes no jogo.
+
+[ ]	Mostrar o HP e mana de cada usuario.
+[ ]	Mostrar em tempo real a duraçao da partida.
+
+[ ]	Campo: Possui areas especificas para cartas de monstro, efeito e mana.
+[ ]	Deck: Composto por 50 cartas.
+[ ]	Monstro: Uma carta onde possui ataque, vida, elemento e possivelmente um efeito.
+[ ]	Pilha de descarte: area reservada às cartas ja utilizadas ou retiradas do deck ou mao.
+
+[ ]	Pontos de mana serao consumidos ao invocar um monstro ao jogo.
+
+[ ]	Uma partida é ganha quando uma das condições seguintes for valida:
+		[ ] Um jogador tiver seu HP reduzido a zero.
+		[ ] Nao possuir mais cartas no seu deck no inicio do seu turno.
+		[ ] Um jogador desistir.
+		[ ] Um jogador forçar o fechamento do jogo.
+		[ ] O jogador atual ficar inativo por 2 minutos, dando assim vitoria a seu oponente.
+
+[ ]	Somente uma carta de mana pode ser jogada por turno.
+
+[ ]	Um jogador nao pode ter mais que quatro Cartas de Monstro em campo ao mesmo tempo.
+[ ]	Ordem de vantagem dos elementos dos monstros: Fogo > Ar > Terra > Agua > Fogo.
+
+[ ]	Nao podera editar o baralho durante a partida.
+[ ]	Um baralho nao podera ter mais de quatro cópias de uma mesma carta.
+
+
+
+****************************************************************		CASOS DE USO		****************************************************************
+
+[ ]	Caso de Uso Organizar Deck
+		Ator Primario: Usuario
+		Fluxo Principal:
+		[ ]	1. O usuario seleciona um deck para organizar.
+		[ ]	2. O sistema gera uma cópia do deck selecionado.
+		[ ]	3. O usuario seleciona uma carta entre as que ele possui em sua coleçao e adiciona à cópia.
+		[ ]	4. O usuario seleciona uma carta entre as que compõe a cópia e a retira.
+			Os passos 3 e 4 sao repetidos até o usuario estar satisfeito.
+		[ ]	5. O usuario salva o deck.
+		[ ]	6. O sistema escreve a cópia sobre o deck originalmente selecionado.
+				Fluxo alternativo:
+				[ ]	3.a. O usuario adiciona uma carta que ultrapasse o limite de cópias ou o número maximo de cartas do deck.
+				[ ]		1. O sistema informa que a carta nao pode ser adicionada.
+				[ ]		2. O sistema nao adiciona a carta.
+				[ ]	5.a. Ha mais que 50 cartas no total do deck.
+				[ ]		1. O sistema desabilita a opçao de salvar enquanto a quantidade de cartas estiver incorreta.
+				[ ]	5.b. O usuario decide nao salvar as alterações.
+				[ ]		1. O sistema deleta a cópia.
+					Ignora o passo 6.
+
+[ ]	Caso de Uso Executar Partida
+		Ator primario: Jogadores
+		Fluxo Principal:
+		[ ]	1.	O sistema inicia a partida.																		//Colocar mensagem como algo "iniciando partida".
+		[ ]	2.	Cada jogador recebe 20 de HP e 3 de Mana, e retira cinco cartas do inicio do seu deck.
+		[ ]	3.	Um dos jogadores escolhido aleatoriamente inicia o jogo.
+		[ ]	4.	O jogador recebe um ponto de mana e saca uma carta do seu deck para sua mao.
+		[ ]	5.	O jogador pode colocar as cartas possiveis em jogo.
+		[ ]	6.	O jogador pode ativar o efeito de alguma carta em jogo.
+		[ ]	7.	O jogador escolhe um de seus monstros em jogo para atacar um monstro do oponente. 
+			O passo 7 pode se repetir enquanto houver monstros para atacar.
+		[ ]	8.	O jogador passa a sua vez a seu oponente.
+			Os passos 4 à 8 se repetem até um dos jogadores ser derrotado ou desistir.
+		[ ]	9.	O jogador vencedor recebe uma carta aleatória gerada pelo sistema.
+				Fluxo Alternativo:
+				[ ]	4.a Caso o jogador tenha sete cartas em mao, o mesmo nao podera sacar uma carta do seu deck.
+				[ ]	4.b Caso o jogador nao tenha mais cartas para sacar de seu deck, o mesmo perdera a partida.
+				[ ]	4.c Caso seja o seu primeiro turno ele nao recebera um ponto de mana.
+				[ ]	5.a Caso o jogador nao possuir pontos de mana suficientes para invocar a carta, a mesma nao podera ser colocada em campo.
+				[ ]	5.b Caso a carta jogada tenha um efeito executado quando jogada, inclui Executar Efeito.
+				[ ]	6.a Inclui Executar Efeito.
+				[ ]	7.a Caso seja o primeiro turno do jogador, o passo 7 é desconsiderado pulando diretamente para o passo 8.
+				[ ]	7.b Caso o jogador nao tenha monstros em jogo, o passo 7 é desconsiderado pulando diretamente para o passo 8.
+				[ ]	7.c Inclui Executar Batalha.
+			
+[ ]	Caso de Uso Executar Batalha
+		Ator primario: Sistema.
+		Fluxo Basico:
+		[ ]	1.	O monstro selecionado para defender tem sua vida subtraida pelo valor dos pontos de ataque do monstro atacante.
+		[ ]	2.	O sistema verifica se o defensor continua em campo, levando em consideraçao possiveis efeitos ativos.
+		[ ]	3.	Se um monstro tiver sua vida reduzida a zero, sera descartado para a area de descarte.
+			
+				Fluxo Alternativo:
+				[ ]	1.a. Existe uma ou mais cartas com um efeito especificado "Ao atacar" ou "Ao defender".
+				[ ]		1. O(s) efeito(s) é executado(s) antes do passo 1.
+				[ ]		2. As ações seguintes levam em consideraçao o(s) efeito(s), se o efeito afeta-las
+				[ ]	1.b Caso o jogador nao tenha um monstro para defender, o monstro atacara diretamente os seus pontos de vida.
+				[ ]	1.c Caso o monstro atacante tenha um elemento vantajoso, tera seu ataque dobrado.
+
+[ ]	Caso de Uso Executar Efeito
+		Ator primario: Sistema
+		Fluxo Basico:
+		[ ]	1. Uma carta ativa um efeito, por decisao do jogador ou automaticamente pelo sistema.
+		[ ]	2. O sistema executa os efeitos descritos.
+			
+				Fluxo Alternativo:
+				[ ]	2.a. Alguma condiçao do efeito nao é cumprida
+				[ ]		1. O sistema exibe uma mensagem informando que o efeito nao pode ser executado.
+
+						
+****************************************************************		FIM DOS CASOS DE USO		****************************************************************
