@@ -1,11 +1,11 @@
 ===		IMPLEMENTACAO		===
 
-[ ]	Simulaçao de partidas.
-[ ]	Criaçao e ediçao de baralhos.
-[ ]	Exibiçao de todas as cartas existentes no jogo.
+[ ]	Simulacao de partidas.
+[ ]	Criacao e edicao de baralhos.
+[ ]	Exibicao de todas as cartas existentes no jogo.
 
 [ ]	Mostrar o HP e mana de cada usuario.
-[ ]	Mostrar em tempo real a duraçao da partida.
+[ ]	Mostrar em tempo real a duracao da partida.
 
 [ ]	Campo: Possui areas especificas para cartas de monstro, efeito e mana.
 [ ]	Deck: Composto por 50 cartas.
@@ -14,11 +14,11 @@
 
 [ ]	Pontos de mana serao consumidos ao invocar um monstro ao jogo.
 
-[ ]	Uma partida é ganha quando uma das condições seguintes for valida:
+[ ]	Uma partida é ganha quando uma das condicões seguintes for valida:
 		[ ] Um jogador tiver seu HP reduzido a zero.
 		[ ] Nao possuir mais cartas no seu deck no inicio do seu turno.
 		[ ] Um jogador desistir.
-		[ ] Um jogador forçar o fechamento do jogo.
+		[ ] Um jogador forcar o fechamento do jogo.
 		[ ] O jogador atual ficar inativo por 2 minutos, dando assim vitoria a seu oponente.
 
 [ ]	Somente uma carta de mana pode ser jogada por turno.
@@ -37,7 +37,7 @@
 		Fluxo Principal:
 		[ ]	1. O usuario seleciona um deck para organizar.
 		[ ]	2. O sistema gera uma cópia do deck selecionado.
-		[ ]	3. O usuario seleciona uma carta entre as que ele possui em sua coleçao e adiciona à cópia.
+		[ ]	3. O usuario seleciona uma carta entre as que ele possui em sua colecao e adiciona à cópia.
 		[ ]	4. O usuario seleciona uma carta entre as que compõe a cópia e a retira.
 			Os passos 3 e 4 sao repetidos até o usuario estar satisfeito.
 		[ ]	5. O usuario salva o deck.
@@ -47,8 +47,8 @@
 				[ ]		1. O sistema informa que a carta nao pode ser adicionada.
 				[ ]		2. O sistema nao adiciona a carta.
 				[ ]	5.a. Ha mais que 50 cartas no total do deck.
-				[ ]		1. O sistema desabilita a opçao de salvar enquanto a quantidade de cartas estiver incorreta.
-				[ ]	5.b. O usuario decide nao salvar as alterações.
+				[ ]		1. O sistema desabilita a opcao de salvar enquanto a quantidade de cartas estiver incorreta.
+				[ ]	5.b. O usuario decide nao salvar as alteracões.
 				[ ]		1. O sistema deleta a cópia.
 					Ignora o passo 6.
 
@@ -81,13 +81,13 @@
 		Ator primario: Sistema.
 		Fluxo Basico:
 		[ ]	1.	O monstro selecionado para defender tem sua vida subtraida pelo valor dos pontos de ataque do monstro atacante.
-		[ ]	2.	O sistema verifica se o defensor continua em campo, levando em consideraçao possiveis efeitos ativos.
+		[ ]	2.	O sistema verifica se o defensor continua em campo, levando em consideracao possiveis efeitos ativos.
 		[ ]	3.	Se um monstro tiver sua vida reduzida a zero, sera descartado para a area de descarte.
 			
 				Fluxo Alternativo:
 				[ ]	1.a. Existe uma ou mais cartas com um efeito especificado "Ao atacar" ou "Ao defender".
 				[ ]		1. O(s) efeito(s) é executado(s) antes do passo 1.
-				[ ]		2. As ações seguintes levam em consideraçao o(s) efeito(s), se o efeito afeta-las
+				[ ]		2. As acões seguintes levam em consideracao o(s) efeito(s), se o efeito afeta-las
 				[ ]	1.b Caso o jogador nao tenha um monstro para defender, o monstro atacara diretamente os seus pontos de vida.
 				[ ]	1.c Caso o monstro atacante tenha um elemento vantajoso, tera seu ataque dobrado.
 
@@ -98,7 +98,7 @@
 		[ ]	2. O sistema executa os efeitos descritos.
 			
 				Fluxo Alternativo:
-				[ ]	2.a. Alguma condiçao do efeito nao é cumprida
+				[ ]	2.a. Alguma condicao do efeito nao é cumprida
 				[ ]		1. O sistema exibe uma mensagem informando que o efeito nao pode ser executado.
 
 						
