@@ -4,7 +4,6 @@
 [ ]	Criaçao e ediçao de baralhos.
 [ ]	Exibiçao de todas as cartas existentes no jogo.
 
-
 [ ]	Mostrar o HP e mana de cada usuario.
 [ ]	Mostrar em tempo real a duraçao da partida.
 
