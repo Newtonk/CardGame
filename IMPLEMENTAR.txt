@@ -30,6 +30,7 @@
 [ ]	Um baralho nao podera ter mais de quatro cópias de uma mesma carta.
 
 
+
 ****************************************************************		CASOS DE USO		****************************************************************
 
 [ ]	Caso de Uso Organizar Deck
