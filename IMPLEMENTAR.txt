@@ -33,6 +33,7 @@
 
 ****************************************************************		CASOS DE USO		****************************************************************
 
+
 [ ]	Caso de Uso Organizar Deck
 		Ator Primario: Usuario
 		Fluxo Principal:
